@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Staff Application</title>
+  <title>Minecone Network Staff Application</title>
 
   <style>
     body {
@@ -30,6 +30,18 @@
       text-align: center;
       margin-bottom: 15px;
       color: #55ff55;
+      line-height: 1.3;
+    }
+
+    /* ✅ TITLE STYLING */
+    .title-main {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .title-sub {
+      font-size: 16px;
+      color: #aaa;
     }
 
     input, textarea {
@@ -75,7 +87,6 @@
       box-shadow: 0 3px 0 #222;
     }
 
-    /* ✅ NEW SUBMIT BUTTON */
     .submit-btn {
       right: 15px;
       background: #00c3ff;
@@ -115,7 +126,11 @@
 <body>
 
 <div class="card">
-<h2>🛡 Staff Application</h2>
+
+<h2>
+  <span class="title-main">Minecone Network</span><br>
+  <span class="title-sub">Staff Application</span>
+</h2>
 
 <form id="appForm">
 
@@ -170,7 +185,6 @@
 <div class="step hidden" id="step9">
   <textarea id="q8" placeholder="Anything else we should know about you?" required></textarea>
   <button type="button" class="nav-btn back-btn" onclick="prevStep()">⬅ Back</button>
-  <!-- ✅ FIXED BUTTON -->
   <button type="submit" class="nav-btn submit-btn">Submit 🚀</button>
 </div>
 
@@ -183,7 +197,6 @@
 let currentStep = 1;
 let submitted = false;
 
-// NEXT
 function nextStep() {
   let step = document.getElementById("step" + currentStep);
   let inputs = step.querySelectorAll("input, textarea");
@@ -200,26 +213,23 @@ function nextStep() {
   document.getElementById("step" + currentStep).classList.remove("hidden");
 }
 
-// BACK
 function prevStep() {
   document.getElementById("step" + currentStep).classList.add("hidden");
   currentStep--;
   document.getElementById("step" + currentStep).classList.remove("hidden");
 }
 
-// AGE FIX
 document.getElementById("age").addEventListener("input", function() {
   this.value = this.value.replace(/[^0-9]/g, "");
 });
 
-// SUBMIT FIXED
 document.getElementById("appForm").addEventListener("submit", function(e){
   e.preventDefault();
 
   if (submitted) return;
   submitted = true;
 
-  let btn = document.querySelector(".submit-btn"); // ✅ FIXED
+  let btn = document.querySelector(".submit-btn");
   btn.innerText = "Sending...";
   btn.disabled = true;
 
@@ -243,7 +253,6 @@ document.getElementById("appForm").addEventListener("submit", function(e){
   });
 });
 
-// CURSOR
 const cursor = document.getElementById("cursor");
 
 document.addEventListener("mousemove", e => {
