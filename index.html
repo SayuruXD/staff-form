@@ -233,25 +233,47 @@ document.getElementById("appForm").addEventListener("submit", function(e){
   btn.innerText = "Sending...";
   btn.disabled = true;
 
-fetch("https://script.google.com/macros/s/AKfycbwS1h_5rGxwijPZfboqdpS98NFzbxy2zjewerHyqNxRIbQZiGokIdv-5tb-CdZUWeh_/exec", {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    name: document.getElementById("name").value,
-    age: document.getElementById("age").value,
-    q1: document.getElementById("q1").value,
-    q2: document.getElementById("q2").value,
-    q3: document.getElementById("q3").value,
-    q4: document.getElementById("q4").value,
-    q5: document.getElementById("q5").value,
-    q6: document.getElementById("q6").value,
-    q7: document.getElementById("q7").value,
-    q8: document.getElementById("q8").value
+  fetch("https://script.google.com/macros/s/AKfycbwS1h_5rGxwijPZfboqdpS98NFzbxy2zjewerHyqNxRIbQZiGokIdv-5tb-CdZUWeh_/exec", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      name: document.getElementById("name").value,
+      age: document.getElementById("age").value,
+      q1: document.getElementById("q1").value,
+      q2: document.getElementById("q2").value,
+      q3: document.getElementById("q3").value,
+      q4: document.getElementById("q4").value,
+      q5: document.getElementById("q5").value,
+      q6: document.getElementById("q6").value,
+      q7: document.getElementById("q7").value,
+      q8: document.getElementById("q8").value
+    })
   })
+  .then(res => res.json())
+  .then(data => {
+    alert("Application Sent!");
+    location.reload();
+  })
+  .catch(err => {
+    alert("Error sending application");
+    console.error(err);
+    btn.innerText = "Submit 🚀";
+    btn.disabled = false;
+    submitted = false;
+  });
 });
 
+// cursor effect (keep this OUTSIDE submit)
+const cursor = document.getElementById("cursor");
+
+document.addEventListener("mousemove", e => {
+  cursor.style.left = e.clientX + "px";
+  cursor.style.top = e.clientY + "px";
+});
+</script>
+  
 const cursor = document.getElementById("cursor");
 
 document.addEventListener("mousemove", e => {
