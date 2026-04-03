@@ -233,24 +233,23 @@ document.getElementById("appForm").addEventListener("submit", function(e){
   btn.innerText = "Sending...";
   btn.disabled = true;
 
-  fetch("https://script.google.com/macros/s/AKfycbwNVGOCCfNSEvvsaLC4v2kXu437EFYBCzA8YxMv7OGD_rA3WZMvpBEEvoC0KJJ2ZT56/exec", {
-    method: "POST",
-    body: JSON.stringify({
-      name: name.value,
-      age: age.value,
-      q1: q1.value,
-      q2: q2.value,
-      q3: q3.value,
-      q4: q4.value,
-      q5: q5.value,
-      q6: q6.value,
-      q7: q7.value,
-      q8: q8.value
-    })
-  }).then(() => {
-    alert("Application Sent!");
-    location.reload();
-  });
+fetch("https://script.google.com/macros/s/AKfycbwNVGOCCfNSEvvsaLC4v2kXu437EFYBCzA8YxMv7OGD_rA3WZMvpBEEvoC0KJJ2ZT56/exec", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    name: document.getElementById("name").value,
+    age: document.getElementById("age").value,
+    q1: document.getElementById("q1").value,
+    q2: document.getElementById("q2").value,
+    q3: document.getElementById("q3").value,
+    q4: document.getElementById("q4").value,
+    q5: document.getElementById("q5").value,
+    q6: document.getElementById("q6").value,
+    q7: document.getElementById("q7").value,
+    q8: document.getElementById("q8").value
+  })
 });
 
 const cursor = document.getElementById("cursor");
